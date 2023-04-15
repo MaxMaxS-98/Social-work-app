@@ -1,30 +1,54 @@
 const connection = require('../config/connection');
-const { Post, User } = require('../models');
-const getRandomName = require('./data');
-
-console.log(getRandomName());
-connection.on('error', (err) => err);
+const { User, Thought } = require('../models');
 
 connection.once('open', async () => {
-  console.log('connected');
-  await Post.deleteMany({});
-  await User.deleteMany({});
+  try {
+    await Thought.deleteMany({});
+    await User.deleteMany({});
 
-  const users = [];
+    const userData = await User.create([
+      {
+        username: 'maximilianthaman',
+        email: 'maximilianthaman@gmail,com',
+        thoughts: [],
+        friends: []
+      },
+      {
+        username: 'maximilian',
+        email: 'maximilian@gmail.com',
+        thoughts: [],
+        friends: []
+      },
+      
+    ]);
+    
+    const thoughtData = await Thought.create([
+      {
+        thoughtText: 'This is a random thought',
+        createdAt: new Date(),
+        username: 'maximilian',
+        reactions: [
+          {reactionId: '1', reactionBody: 'This is a reaction', username: 'maximilian', createdAt: new Date()},
+        ]
+      },
+      {
+        thoughtText: 'This is another random thought',
+        createdAt: new Date(),
+        username: 'maximilianthaman',
+        reactions: [
+          {reactionId: '2', reactionBody: 'This is another reaction', username: 'maximilianthaman', createdAt: new Date()},
+        ]
+      },
+    ]);
 
-  for (let i = 0; i < 20; i++) {
-    const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
+    await User.updateMany({}, { $push: { thoughts: thoughtData } });
+    await User.updateMany({}, { $push: { friends: userData } });
 
-    users.push({
-      first,
-      last,
-      age: Math.floor(Math.random() * (99 - 18 + 1) + 18),
-    });
+    console.log('all done!');
+    process.exit(0);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
   }
-
-  await User.collection.insertMany(users);
-  console.log(users);
-  process.exit(0);
 });
+

@@ -1,0 +1,15 @@
+ {
+    "name": "hw18-nosql-api",
+    "version": "1.0.0",
+    "description": "API for hw18-nosql",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "seed": "node seed.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "mongoose": "^6.9.2"
+        }
+    }
+ 
