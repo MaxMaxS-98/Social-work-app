@@ -1,4 +1,4 @@
-const { Thought,User } = require('../models');
+const { Thought,User } = require('../models/User');
 // const { deleteThought } = require('../../controllers/thought-controller');
 
 
@@ -71,7 +71,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  deleteReaction(req, res) {
+  removeReaction(req, res) {
     Thought.findOneAndUpdate(
       {_id: req.params.thoughtId},
       {$pull: {reactions: {reactionId: req.params.reactionId}}},
