@@ -1,5 +1,5 @@
-const { Thought } = require('../models');
-const { deleteThought } = require('../../controllers/thought-controller');
+const { Thought,User } = require('../models');
+// const { deleteThought } = require('../../controllers/thought-controller');
 
 
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
           res.status(404).json({message: 'No thought with that ID'});
           return;
         }
-        res.json(thought);
+        res.json({ message: 'Thought successfully deleted!' });
       })
       .catch((err) => res.status(500).json(err));
   },
