@@ -1,3 +1,4 @@
+// i was going to comment on each line but i think it's pretty self explanatory
 const express = require('express');
 const routes = require('./routes');
 const db = require('./config/connection');

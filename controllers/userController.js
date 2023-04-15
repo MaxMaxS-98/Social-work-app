@@ -1,6 +1,7 @@
 const User = require('../models/User');
-
+// this is the exported object from this file
 module.exports = {
+  // get all users and populate their thoughts
   getAllUsers(req, res) {
     User.find()
     .populate({
@@ -15,6 +16,7 @@ module.exports = {
     }
     );
   },
+  // get a single user by its _id and populate its thoughts and friends
   getUserById(req, res) {
     User.findOne({ _id: req.params.userId })
       .populate({
@@ -35,14 +37,14 @@ module.exports = {
       }
       );
   },
-  // create a new user
+  // create a new user using data in req.body and return the new user document
   createUser(req, res) {
     User.create(req.body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err));
   },
 
-  // update a user by its _id
+  // update a user by its _id using data in req.body and return the updated user document
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -60,7 +62,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // delete a user by its _id
+  // delete a user by its _id and return the deleted user document (or null if no user was deleted)
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((dbUserData) => {
@@ -89,6 +91,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // remove a friend from a user's friend list by its _id and return the updated user document
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },

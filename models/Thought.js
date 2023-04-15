@@ -4,7 +4,7 @@ const reactionSchema = require('./Reaction');
 const { moment } = require('moment');
 
 
-// Schema to create Post model
+// Schema to create Post model 
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -36,12 +36,12 @@ const thoughtSchema = new Schema(
 
 // Create a virtual property `upvoteCount` that gets the amount of comments per user
 thoughtSchema.virtual('reactionCount')
-  // Getter
+  // Getter method that returns the length of the user's comments array field on query
   .get(function () {
     return this.reactions.length;
   });
 
-// Initialize our Post model
+// Initialize our Post model using the PostSchema we just created
 const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;

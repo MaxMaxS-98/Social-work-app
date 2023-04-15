@@ -1,11 +1,14 @@
+// this file will be used to seed the database with some starter data
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 
+// this connection.once() method will run the code inside of it once the connection to the database is open
 connection.once('open', async () => {
   try {
     await Thought.deleteMany({});
     await User.deleteMany({});
 
+    // this will create the users and thoughts
     const userData = await User.create([
       {
         username: 'maximilianthaman',
@@ -40,7 +43,7 @@ connection.once('open', async () => {
         ]
       },
     ]);
-
+// this will update the users and thoughts with the correct ids
     await User.updateMany({}, { $push: { thoughts: thoughtData } });
     await User.updateMany({}, { $push: { friends: userData } });
 

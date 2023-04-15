@@ -1,3 +1,4 @@
+// this file will contain all of the routes for the thought model
 const router = require('express').Router();
 const {
   getAllThoughts,
@@ -9,7 +10,7 @@ const {
   removeReaction
 } = require('../../controllers/thought-controller');
 
-
+// this is the exported object from this file
 router
   .route('/')
   .get(getAllThoughts)
