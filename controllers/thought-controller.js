@@ -1,4 +1,6 @@
-const { Thought, User } = require('../models');
+const { Thought } = require('../models');
+const { deleteThought } = require('../../controllers/thought-controller');
+
 
 module.exports = {
   getAllThoughts(req, res) {

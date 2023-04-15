@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat');
 const reactionSchema = require('./Reaction');
+const { moment } = require('moment');
 
 
 // Schema to create Post model
@@ -15,7 +16,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => dateFormat(createdAtVal)
+      get: timestamp => moment(timestamp)
     },
     username: {
       type: String,
