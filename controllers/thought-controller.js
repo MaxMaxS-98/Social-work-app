@@ -1,4 +1,4 @@
-const { Thought,User } = require('../models/User');
+const { Thought } = require('../models/Thought');
 // const { deleteThought } = require('../../controllers/thought-controller');
 
 // this is the exported object from this file

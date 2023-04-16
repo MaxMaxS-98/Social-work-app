@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat');
 const reactionSchema = require('./Reaction');
-const { moment } = require('moment');
+const moment = require('moment');
 
 
 // Schema to create Post model 
@@ -27,7 +27,7 @@ const thoughtSchema = new Schema(
   {
    
     toJSON: {
-      virtuals: true,
+      virtual: true,
       getters: true
     },
     id: false

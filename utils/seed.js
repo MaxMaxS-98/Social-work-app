@@ -12,7 +12,7 @@ connection.once('open', async () => {
     const userData = await User.create([
       {
         username: 'maximilianthaman',
-        email: 'maximilianthaman@gmail,com',
+        email: 'maximilianthaman@gmail.com',
         thoughts: [],
         friends: []
       },
@@ -31,7 +31,7 @@ connection.once('open', async () => {
         createdAt: new Date(),
         username: 'maximilian',
         reactions: [
-          {reactionId: '1', reactionBody: 'This is a reaction', username: 'maximilian', createdAt: new Date()},
+          {reactionBody: 'This is a reaction', username: 'maximilian', createdAt: new Date()},
         ]
       },
       {
@@ -39,7 +39,7 @@ connection.once('open', async () => {
         createdAt: new Date(),
         username: 'maximilianthaman',
         reactions: [
-          {reactionId: '2', reactionBody: 'This is another reaction', username: 'maximilianthaman', createdAt: new Date()},
+          {reactionBody: 'This is another reaction', username: 'maximilianthaman', createdAt: new Date()},
         ]
       },
     ]);
